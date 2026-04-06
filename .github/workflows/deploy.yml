@@ -31,7 +31,7 @@ jobs:
       - name: Run tests
         run: |
           cd backend
-          pytest tests/ -v
+          PYTHONPATH=. pytest tests/ -v
 
   # ========== JOB 2: Сборка и пуш Docker образов ==========
   docker-build:
@@ -76,8 +76,9 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SERVER_PORT || 22 }}
           script: |
-            # Останавливаем старые контейнеры
-            cd /app/my-webapp || mkdir -p /app/my-webapp && cd /app/my-webapp
+            # Создаём папку если её нет
+            mkdir -p /app/my-webapp
+            cd /app/my-webapp
             
             # Скачиваем последние образы
             docker pull ${{ secrets.DOCKER_USERNAME }}/my-webapp-backend:latest
@@ -95,6 +96,9 @@ jobs:
               -v pgdata:/var/lib/postgresql/data \
               --restart unless-stopped \
               postgres:15-alpine
+            
+            # Ждём, пока БД запустится
+            sleep 5
             
             # Запускаем бэкенд
             docker run -d --name my-backend \
