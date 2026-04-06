@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My WebApp</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>✨ Message Board ✨</h1>
+        
+        <div class="form-card">
+            <input type="text" id="username" placeholder="Your name" maxlength="50">
+            <textarea id="content" placeholder="Your message..." rows="3" maxlength="500"></textarea>
+            <button id="sendBtn">Send message 📨</button>
+        </div>
+
+        <div id="messages" class="messages-container">
+            <div class="loading">Loading messages...</div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
