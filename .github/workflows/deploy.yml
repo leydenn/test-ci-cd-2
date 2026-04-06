@@ -50,6 +50,7 @@ jobs:
           python -m pytest test_api.py -v
         env:
           DATABASE_URL: postgresql://user:password@localhost:5432/mydb
+          PYTHONPATH: ${{ github.workspace }}/backend
 
 
   # ========== JOB 2: Сборка и пуш Docker образов ==========
