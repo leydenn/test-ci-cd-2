@@ -31,7 +31,7 @@ jobs:
       - name: Run tests
         run: |
           cd backend
-          pytest app/test_main.py -v
+          python -m pytest app/test_main.py -v
 
   # ========== JOB 2: Сборка и пуш Docker образов ==========
   docker-build:
